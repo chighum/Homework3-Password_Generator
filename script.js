@@ -9,87 +9,105 @@ function writePassword() {
   passwordText.value = password;
 }
 // VARIABLE DECLARATION
-// lowercase letter array
-var lowerCaseLetters = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
+// All of the possible characters inside their own array inside an object called masterArray declared globally
+var masterArray = {
+  lowerCaseLetters: [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ],
+  upperCaseLetters: [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ],
+  numbers: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  specialCharacters: [
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "?",
+    "'",
+    "(",
+    ")",
+    "+",
+    ",",
+    "-",
+    ".",
+    "/",
+    ":",
+    ";",
+    "<",
+    "=",
+    ">",
+    "[",
+    "]",
+    "_",
+    "`",
+    "{",
+    "|",
+    "}",
+    "~",
+  ],
+};
 
 // uppercase letter array - don't want to type out all the letters again so running a for loop on lowerCaseLetters
 // lowerCaseLetters.slice makes a copy of lowerCaseLetters so it doesn't change original array
-var upperCaseLetters = lowerCaseLetters.slice(0, lowerCaseLetters.length);
-for (var i = 0; i < upperCaseLetters.length; i++) {
-  upperCaseLetters[i] = upperCaseLetters[i].toUpperCase();
-}
-
-// numbers array
-var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-// special characters array
-var specialCharacters = [
-  "!",
-  "@",
-  "#",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-  "?",
-  "'",
-  "(",
-  ")",
-  "+",
-  ",",
-  "-",
-  ".",
-  "/",
-  ":",
-  ";",
-  "<",
-  "=",
-  ">",
-  "[",
-  "]",
-  "_",
-  "`",
-  "{",
-  "|",
-  "}",
-  "~",
-];
-
-// create master array of all possible characters
-var masterArray = [].concat(
-  lowerCaseLetters,
-  upperCaseLetters,
-  numbers,
-  specialCharacters
-);
+// var upperCaseLetters = lowerCaseLetters.slice(0, lowerCaseLetters.length);
+// for (var i = 0; i < upperCaseLetters.length; i++) {
+//   upperCaseLetters[i] = upperCaseLetters[i].toUpperCase();
+// }
 
 console.log(masterArray);
 // Pseudo-code: outline in normal English
@@ -136,20 +154,29 @@ function generatePassword() {
 
           if (whatCharacters.lowerCase === false) {
             // if they selected lowercase, add all lowerCaseLetters to masterArray
-            masterArray.splice(0, 25);
+            delete masterArray.lowerCaseLetters;
           }
           if (whatCharacters.upperCase === false) {
             // if they selected uppercase, add all upperCaseLetters to masterArray
-            masterArray.splice(26, 51);
+            delete masterArray.upperCaseLetters;
           }
           if (whatCharacters.numbers === false) {
-            masterArray.splice(52, 61);
+            delete masterArray.numbers;
           }
           if (whatCharacters.specialCharacters === false) {
             // call for random special character
-            masterArray.splice(62, 91);
+            delete masterArray.specialCharacters;
           }
           console.log(masterArray);
+          // for loop to iterate randomly
+          // var passwordArray = masterArray.slice(0, masterArray.length);
+          // for (var i = 0; i < passwordLength; i++) {
+          //   passwordArray[i] +=
+          //     passwordArray[i][
+          //       Math.floor(Math.random() * passwordArray.length)
+          //     ];
+          // }
+          // console.log(passwordArray);
         }
         createPassword();
         // return the password from the generatePassword function either as an alert or in the box
