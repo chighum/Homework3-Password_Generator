@@ -35,7 +35,7 @@ function choosecharacters() {
     confirm("Would you like numbers in your password?"),
     confirm("Would you like special characters in your password?"),
   ];
-  if (whatCharacters.every() === false) {
+  if (whatCharacters.every(Boolean) == false) {
     alert("You must select at least one character type");
     choosecharacters();
   }
