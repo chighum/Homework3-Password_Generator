@@ -25,18 +25,24 @@ function generatePassword() {
     function choosecharacters() {
       // prompt user to confirm all character selections separately
       // store answers in an array
-      const whatCharacters = [
-        confirm("Would you like lowercase letters in your password?"),
-        confirm("Would you like uppercase letters in your password?"),
-        confirm("Would you like numbers in your password?"),
-        confirm("Would you like special characters in your password?"),
-      ];
+      var whatCharacters = {
+        lowerCase: confirm(
+          "Would you like lowercase letters in your password?"
+        ),
+        upperCase: confirm(
+          "Would you like uppercase letters in your password?"
+        ),
+        numbers: confirm("Would you like numbers in your password?"),
+        specialCharacters: confirm(
+          "Would you like special characters in your password?"
+        ),
+      };
       if (
         // error handling - did they select at least one option?
-        whatCharacters[0] === false &&
-        whatCharacters[1] === false &&
-        whatCharacters[2] === false &&
-        whatCharacters[3] === false
+        whatCharacters.lowerCase === false &&
+        whatCharacters.upperCase === false &&
+        whatCharacters.numbers === false &&
+        whatCharacters.specialCharacters === false
       ) {
         alert("Please select at least one character type.");
         choosecharacters();
@@ -49,7 +55,7 @@ function generatePassword() {
             // call for random letter from letters array
           }
           if (whatCharacters[1]) {
-            // call for random letter from letters.toUpperCase
+            // call for random letter from letters.toUpperCase()
           }
           if (whatCharacters[2]) {
             var randomNum = Math.floor(Math.random() * 10);
@@ -57,6 +63,7 @@ function generatePassword() {
           if (whatCharacters[3]) {
             // call for random special character
           }
+          //
         }
         createPassword();
         // return the password from the generatePassword function either as an alert or in the box
