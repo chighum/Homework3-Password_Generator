@@ -25,14 +25,22 @@ function generatePassword() {
     //     "Sorry, that is too many characters. \nPlease input a number between 8 and 128"
     //   );
   } else {
-    const chooseCharacters = [
-      confirm("Would you like lowercase letters in your password?"),
-      confirm("Would you like uppercase letters in your password?"),
-      confirm("Would you like numbers in your password?"),
-      confirm("Would you like special characters in your password?"),
-    ];
+    choosecharacters();
   }
 }
+function choosecharacters() {
+  const whatCharacters = [
+    confirm("Would you like lowercase letters in your password?"),
+    confirm("Would you like uppercase letters in your password?"),
+    confirm("Would you like numbers in your password?"),
+    confirm("Would you like special characters in your password?"),
+  ];
+  if (whatCharacters.every() === false) {
+    alert("You must select at least one character type");
+    choosecharacters();
+  }
+}
+
 // prompt user for length
 // error handling - is it between 8-128 characters?
 
