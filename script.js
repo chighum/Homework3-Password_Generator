@@ -20,10 +20,6 @@ function generatePassword() {
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Sorry, that is an invalid input. \nPlease input a number 8 and 128");
     generatePassword();
-    // } else if (passwordLength > 128) {
-    //   prompt(
-    //     "Sorry, that is too many characters. \nPlease input a number between 8 and 128"
-    //   );
   } else {
     choosecharacters();
   }
@@ -35,11 +31,22 @@ function choosecharacters() {
     confirm("Would you like numbers in your password?"),
     confirm("Would you like special characters in your password?"),
   ];
-  if (whatCharacters.every(Boolean) == false) {
-    alert("You must select at least one character type");
+  if (
+    whatCharacters[0] === false &&
+    whatCharacters[1] === false &&
+    whatCharacters[2] === false &&
+    whatCharacters[3] === false
+  ) {
+    alert("Please select at least one character type.");
     choosecharacters();
+  } else {
+    createPassword();
   }
 }
+
+// function createPassword() {
+// if whatCharacters
+// }
 
 // prompt user for length
 // error handling - is it between 8-128 characters?
