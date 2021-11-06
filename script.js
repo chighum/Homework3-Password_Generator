@@ -109,7 +109,6 @@ var masterArray = {
 //   upperCaseLetters[i] = upperCaseLetters[i].toUpperCase();
 // }
 
-console.log(masterArray);
 // Pseudo-code: outline in normal English
 
 // create generatePassword function
@@ -168,15 +167,15 @@ function generatePassword() {
             delete masterArray.specialCharacters;
           }
           console.log(masterArray);
-          // for loop to iterate randomly
-          // var passwordArray = masterArray.slice(0, masterArray.length);
-          // for (var i = 0; i < passwordLength; i++) {
-          //   passwordArray[i] +=
-          //     passwordArray[i][
-          //       Math.floor(Math.random() * passwordArray.length)
-          //     ];
-          // }
-          // console.log(passwordArray);
+          var passwordArray = [].concat.apply([], Object.values(masterArray));
+          console.log(passwordArray);
+          var secretPassword = "";
+
+          for (var i = 0; i < passwordLength; i++) {
+            secretPassword +=
+              passwordArray[Math.floor(Math.random() * passwordArray.length)];
+          }
+          alert("Here is your random password: \n" + secretPassword);
         }
         createPassword();
         // return the password from the generatePassword function either as an alert or in the box
