@@ -182,9 +182,17 @@ function generatePassword() {
                 "\n\nDo you want to generate a different password?"
             );
             if (anotherPassword) {
-              generatePassword();
+              function changeInputs() {
+                var change = confirm("Do you want to change input parameters?");
+                if (change) {
+                  generatePassword();
+                } else {
+                  createPassword();
+                }
+              }
+              changeInputs();
             } else {
-              alert("Thanks for stopping by! ");
+              alert("Thanks for stopping by!");
             }
           }
           showPassword();
