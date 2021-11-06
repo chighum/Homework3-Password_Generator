@@ -111,9 +111,11 @@ function generatePassword() {
   var passwordLength = prompt(
     "How long would you like your password to be? \nMust be between 8 and 128 characters"
   );
-  // error handling - is it between 8-128 characters?
+  // error handling - is it a number between 8-128 characters?
   if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
-    alert("Sorry, that is an invalid input. \nPlease input a number 8 and 128");
+    alert(
+      "Sorry, that is an invalid input. \nPlease input a number between 8 and 128"
+    );
     generatePassword();
   } else {
     function choosecharacters() {
@@ -145,7 +147,6 @@ function generatePassword() {
           // clone masterArray into usersCharacters so masterArray is unchanged
           // allows the user to run the program multiple times in a row without refreshing the page
           var usersCharacters = Object.assign({}, masterArray);
-          // use inputs to generate password
           // eliminating character types the user did not choose from the new userCharacters object
           if (whatCharacters.lowerCase === false) {
             delete usersCharacters.lowerCaseLetters;
@@ -174,7 +175,8 @@ function generatePassword() {
             secretPassword +=
               passwordArray[Math.floor(Math.random() * passwordArray.length)];
           }
-          // present secretPassword as an alert
+          // present secretPassword as a confirm
+          // ask user if they want to generate a different password and then if they want to change inputs
           function showPassword() {
             var anotherPassword = confirm(
               "Here is your random password: \n\n" +
@@ -204,6 +206,5 @@ function generatePassword() {
   }
 }
 
-// console.log(masterArray);
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
