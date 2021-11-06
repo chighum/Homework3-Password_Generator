@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var passwordText = document.querySelector("#password");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -102,13 +102,6 @@ var masterArray = {
   ],
 };
 
-// uppercase letter array - don't want to type out all the letters again so running a for loop on lowerCaseLetters
-// lowerCaseLetters.slice makes a copy of lowerCaseLetters so it doesn't change original array
-// var upperCaseLetters = lowerCaseLetters.slice(0, lowerCaseLetters.length);
-// for (var i = 0; i < upperCaseLetters.length; i++) {
-//   upperCaseLetters[i] = upperCaseLetters[i].toUpperCase();
-// }
-
 // Pseudo-code: outline in normal English
 
 // create generatePassword function
@@ -125,7 +118,7 @@ function generatePassword() {
   } else {
     function choosecharacters() {
       // prompt user to confirm all character selections separately
-      // store answers in an array
+      // store answers in an object
       var whatCharacters = {
         lowerCase: confirm(
           "Would you like lowercase letters in your password?"
@@ -149,36 +142,42 @@ function generatePassword() {
         choosecharacters();
       } else {
         function createPassword() {
+          // clone masterArray into usersCharacters so masterArray is unchanged
+          // allows the user to run the program multiple times in a row without refreshing the page
+          var usersCharacters = Object.assign({}, masterArray);
           // use inputs to generate password
-
+          // eliminating character types the user did not choose from the new userCharacters object
           if (whatCharacters.lowerCase === false) {
-            // if they selected lowercase, add all lowerCaseLetters to masterArray
-            delete masterArray.lowerCaseLetters;
+            delete usersCharacters.lowerCaseLetters;
           }
           if (whatCharacters.upperCase === false) {
-            // if they selected uppercase, add all upperCaseLetters to masterArray
-            delete masterArray.upperCaseLetters;
+            delete usersCharacters.upperCaseLetters;
           }
           if (whatCharacters.numbers === false) {
-            delete masterArray.numbers;
+            delete usersCharacters.numbers;
           }
           if (whatCharacters.specialCharacters === false) {
-            // call for random special character
-            delete masterArray.specialCharacters;
+            delete usersCharacters.specialCharacters;
           }
-          console.log(masterArray);
-          var passwordArray = [].concat.apply([], Object.values(masterArray));
-          console.log(passwordArray);
+          // change the userCharacters object of arrays into one new array called passwordArray
+          // passwordArray only contains the character types selected
+          var passwordArray = [].concat.apply(
+            [],
+            Object.values(usersCharacters)
+          );
           var secretPassword = "";
 
+          // for loop iteration to randomly select elements from the passwordArray
+          // stores in new variable called secretPassword as a string
+          // iteration stops when we reach the desired password length
           for (var i = 0; i < passwordLength; i++) {
             secretPassword +=
               passwordArray[Math.floor(Math.random() * passwordArray.length)];
           }
-          alert("Here is your random password: \n" + secretPassword);
+          // present secretPassword as an alert
+          confirm("Here is your random password: \n" + secretPassword);
         }
         createPassword();
-        // return the password from the generatePassword function either as an alert or in the box
       }
     }
     choosecharacters();
