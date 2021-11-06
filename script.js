@@ -175,7 +175,19 @@ function generatePassword() {
               passwordArray[Math.floor(Math.random() * passwordArray.length)];
           }
           // present secretPassword as an alert
-          confirm("Here is your random password: \n" + secretPassword);
+          function showPassword() {
+            var anotherPassword = confirm(
+              "Here is your random password: \n\n" +
+                secretPassword +
+                "\n\nDo you want to generate a different password?"
+            );
+            if (anotherPassword) {
+              generatePassword();
+            } else {
+              alert("Thanks for stopping by! ");
+            }
+          }
+          showPassword();
         }
         createPassword();
       }
